@@ -4,17 +4,16 @@ body {
   font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #FFCF50;
+  background-color: #DCE2E5;
 }
 
 .Nav {
-  background-color: #A4B465;
+  background-color: #586A74;
   overflow: hidden;
   display: block;
-  position: sticky;
+  position: fixed;
   width: 100%;
   top: 0;
-  left: 0;
 }
 
 .Nav a {
@@ -27,13 +26,8 @@ body {
 }
 
 .Nav a:hover {
-  background-color: #626F47;
-  color: #FEFAE0;
-}
-
-.Nav a.active {
-  background-color: #04AA6D;
-  color: white;
+  background-color: #121517;
+  color: #F3F5F6;
 }
 
 .Nav h1 {
@@ -43,4 +37,26 @@ body {
 
 p, h1, h2 {
   padding: 0px 15px;
+}
+
+.Pres {
+  position: relative;
+  z-index: -1;
+  top: 130px;
+}
+
+.Pres_T {
+  position: absolute;
+  top: 50%;
+  left: 40%;
+}
+
+.Pres_IMG {
+  height: 100px;
+  width: 100%;
+}
+
+#Presentation, #API, #Fonctionnalités {
+  margin-top: -150px;
+  padding-top: 150px;
 }
