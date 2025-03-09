@@ -7,18 +7,38 @@ body {
   background-color: #DCE2E5;
 }
 
+
+footer {
+  background-color: black;
+  text-align: center;
+  width: 100%;
+  color: white;
+  position: relative;
+  margin-top: 170px;
+  padding: 5px 0px 5px 0px;
+}
+
+
+#Presentation, #API, #Fonctionnalités {
+  margin-top: -150px;
+  padding-top: 150px;
+}
+
+
 .Nav {
-  background-color: #586A74;
+  background-color: #2158DE;
   overflow: hidden;
   display: block;
   position: fixed;
   width: 100%;
   top: 0;
+  z-index: 1;
+  border-bottom: 1px solid black; 
 }
 
 .Nav a {
   float: right;
-  color: #000000;
+  color: #FFFFFF;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -26,37 +46,219 @@ body {
 }
 
 .Nav a:hover {
-  background-color: #121517;
-  color: #F3F5F6;
+  background-color: #2FA7F7;
 }
 
 .Nav h1 {
   text-align: left;
   padding: 0px 15px;
+  color: #FFFFFF;
 }
 
-p, h1, h2 {
-  padding: 0px 15px;
-}
 
 .Pres {
   position: relative;
-  z-index: -1;
-  top: 130px;
+  top: 129px;
 }
 
 .Pres_T {
   position: absolute;
-  top: 50%;
-  left: 40%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 90px;
+}
+
+.Pres_ST {
+  position: absolute;
+  top: 0;
+  left: 25%;
+  width: 50%;
+  height: 150%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: justify;
+  font-size: 38px;
 }
 
 .Pres_IMG {
-  height: 100px;
   width: 100%;
+  height: 946px;
+  object-fit: cover;
+  object-position: 0 10%;
 }
 
-#Presentation, #API, #Fonctionnalités {
-  margin-top: -150px;
-  padding-top: 150px;
+
+.Deta {
+  position: relative;
+  top: 150px;
+}
+
+.Deta a{
+  text-decoration: none;
+  pointer-events: auto;
+  color: red;
+  font-weight: bold;
+}
+
+.Deta_T, .Deta_ST {
+  text-align: center;
+}
+
+.Deta_DL {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  color: white;
+}
+
+.Deta_Item {
+  position: relative;
+  width: 50%;
+}
+
+.Deta_Item dt {
+  text-align: center;
+  margin: 2% 5% 8% 5%;
+  font-size: 25px;
+  background-color: #2158DE;
+  color: white;
+  border-radius: 15px;
+  padding: 20px;
+  height: 250px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.Deta_Item dd {
+  margin: 0% 1% 2% 1%;
+  position: absolute;
+  top: 35%;
+  width: 98%;
+  text-align: center;
+  font-size: 90px;
+  color: white;
+}
+
+.Deta img {
+  transform: translateY(-20%);
+  width: 275px;
+}
+
+.Deta .Trop_Long {
+  top: 20%;
+}
+
+
+.QLP {
+  position: relative;
+  top: 170px;
+  background-color: #006B07;
+  color: white;
+  text-align: center;
+  padding: 10px 0px 20px 0px;
+}
+
+.QLP a {
+  text-decoration: none;
+  pointer-events: auto;
+  color: red;
+  font-weight: bold;
+}
+
+.QLP img {
+  width: 25%;
+}
+
+.QLP_2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+.QLP_2 p {
+  background-color: #46B34D;
+  color: white;
+  width: 75%;
+  height: 275px;
+  font-size: 35px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-left: 1%;
+  padding: 0% 1% 0% 1%;
+}
+
+.QLP_2 a {
+  width: 25%;
+  height: 275px;
+  margin-right: 1%;
+  text-decoration: none;
+}
+
+.QLP_2 button {
+  width: 100%;
+  height: 100%;
+  background-color: #2158DE;
+  color: white;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 70px;
+}
+
+.QLP_2 button:hover {
+  background-color: #2FA7F7;
+}
+
+
+.Func {
+  position: relative;
+  top: 150px;
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 13px 0px 7% 0px;
+  border-radius: 15px;
+}
+
+.Func h2 {
+  color: black;
+  font-size: 30px;
+  margin-bottom: 50px;
+}
+
+.Func ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.Func li {
+  background-color: #46B34D;
+  color: white;
+  font-size: 20px;
+  padding: 15px;
+  margin: 10px 0px 20px 0px;
+  border-radius: 10px;
+  text-align: center;
 }
