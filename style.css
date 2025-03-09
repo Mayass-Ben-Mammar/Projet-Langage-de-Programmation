@@ -262,3 +262,37 @@ footer {
   border-radius: 10px;
   text-align: center;
 }
+
+
+.Liste {
+  position: relative;
+  top: 150px;
+  text-align: center;
+}
+
+.Liste table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  text-align: center;
+  background-color: black;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.Liste th {
+  background-color: #2158DE;
+  color: white;
+  padding: 15px;
+  font-size: 20px;
+}
+
+.Liste p {
+  margin: 0 auto;
+  padding: 15px 5px;
+  background-color: white;
+}
+
+.Liste p:nth-child(even) {
+  background-color: #f2f2f2;
+}

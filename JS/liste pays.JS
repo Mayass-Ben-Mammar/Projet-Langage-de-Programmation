@@ -1,28 +1,41 @@
 fetch("https://restcountries.com/v3.1/all")
     .then(response => {
         if (!response.ok) {
-            throw new Error("Pays introuvable"); // Cas erreur
+            throw new Error("Pays introuvable");
         }
         return response.json();
     })
     .then(data => {
-        let paysListe = []; // Liste des pays sous forme de dictionnaires {anglais: ..., francais: ...}
+        let paysListe = [];
 
         for (let val of data) {
             let nomAnglais = val.name.common;
-            let nomFrancais = val.translations?.fra?.common || "Non disponible"; // Cas ou le pays est pas disponible
-            paysListe.push({ anglais: nomAnglais, francais: nomFrancais }); // On ajoute le dictionnaire
+            let nomFrancais = val.translations?.fra?.common || "Non disponible";
+            paysListe.push({ anglais: nomAnglais, francais: nomFrancais });
         }
 
-        // Trier les pays par leur nom en anglais
-        paysListe.sort((a, b) => a.francais.localeCompare(b.francais)); // on compare selon le critere nom francais et renvoie -1 0 1 selon si c'est dans l'ordre ou non.
-		// On utilise une fonction flechee pour que sort rearrange b ou a selon le resultat de la fonction
+        // Trier par nom français
+        paysListe.sort((a, b) => a.francais.localeCompare(b.francais));
 
-        let txt = "";
-        for (let pays of paysListe) { // Affichage pays dans les deux langues pour chaque
-            txt += `<br>Français: <strong>${pays.francais}</strong><br>Anglais: <strong>${pays.anglais}</strong><br>`;
+        // Sélection des deux colonnes
+        let colonneFrancais = document.getElementById("francais");
+        let colonneAnglais = document.getElementById("anglais");
+
+        // Réinitialiser les colonnes avant d'ajouter du contenu
+        colonneFrancais.innerHTML = "";
+        colonneAnglais.innerHTML = "";
+
+        // Remplir les colonnes
+        let listeFrancais = "";
+        let listeAnglais = "";
+
+        for (let pays of paysListe) {
+            listeFrancais += `<p>${pays.francais}</p>`; // Ajoute chaque pays en français
+            listeAnglais += `<p>${pays.anglais}</p>`;   // Ajoute chaque pays en anglais
         }
 
-        document.getElementById("paysaffichage").innerHTML = txt;
+        // Injecter le contenu dans chaque colonne
+        colonneFrancais.innerHTML = listeFrancais;
+        colonneAnglais.innerHTML = listeAnglais;
     })
     .catch(error => console.error("Erreur lors du chargement des pays :", error));
