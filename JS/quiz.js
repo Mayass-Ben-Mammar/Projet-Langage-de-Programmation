@@ -22,6 +22,12 @@ function Commencer(){
         <input type="text" id="name" name="name" size="30"/>
         <button onclick="Devine()">Valider</button>
     `; // Html inserer pour faire apparaitre la zone de texte quand on commence une partie
+    const feur = document.querySelector(".blanc");
+    if (feur) {
+        feur.style.backgroundColor = "white";
+    } else {
+        console.error("raaaaaaaaaaah");
+    }
 }
 /*
 function Devine() {
