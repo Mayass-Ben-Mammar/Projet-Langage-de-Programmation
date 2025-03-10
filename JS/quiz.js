@@ -23,7 +23,7 @@ function Commencer(){
         <button onclick="Devine()">Valider</button>
     `; // Html inserer pour faire apparaitre la zone de texte quand on commence une partie
 }
-
+/*
 function Devine() {
 	let resultD = document.getElementById("result"); // Partie du DOM ou le texte de resultat va etre affiché
 	cdt = true; // Condition de partie perdu ou gagné
@@ -34,7 +34,7 @@ function Devine() {
     let paysDevine = paysdata.find(c => c.name.common.toLowerCase() === choixuser);
 
     if (!paysDevine) {
-        resultD.innerHTML = "❌ Pays introuvable !";
+        resultD.innerHTML = "<br>" + `<strong>❌ Pays introuvable !</strong>` +  "<br>" + resultD.innerHTML + "<br>";
         return;
     }
 
@@ -93,9 +93,56 @@ function Devine() {
 	if (cdt == true ) {resultD.innerHTML = "<br>" + resultD.innerHTML + "<strong>Tu as gagné!</strong> Le pays était: " + `<strong>${choixuser}</strong>` + "<br><br>" + indicateurs.join("<br>") + "<br><br>";
 	document.getElementById("Entree").innerHTML = ""; vie = 6; return;} // On affiche le message et les indices validés (tous dans ce cas) et reinitialise les vies pour rejouer
 	vie--; // Si on a pas gagné on retire 1 vie
-    resultD.innerHTML = resultD.innerHTML + "<br>" + `<strong>${choixuser}</strong>` +  "<br><br>" + vie + " <strong>vies restantes</strong> " + "<br><br>" + indicateurs.join("<br>") + "<br>";
+    resultD.innerHTML = "<br>" + `<strong>${choixuser}</strong>` +  "<br><br>" + vie + " <strong>vies restantes</strong> " + "<br><br>" + indicateurs.join("<br>") + "<br>"  + resultD.innerHTML + "<br>";
 	if (vie == 0) {vie = 6; resultD.innerHTML = `Tu as perdu... Le pays était ${choix.name.common}` + "<br>" + ` Capitale: ${Choixcapital}` + "<br>" + `Monnaie: ${Choixmonnaie}` + "<br>" + `Population ${choix.population}`;
 	document.getElementById("Entree").innerHTML = "";return;} // On appuie sur "commencer" pour rejouer donc on supprime les pays dévinés a la partie d'avant
 	// On affiche la bonne réponse, les indices et reinitialise les vies pour rejouer
 return;
+}
+
+*/
+function Devine() {
+    let resultD = document.getElementById("result"); 
+    let errorMessage = document.getElementById("Erreur"); // Zone d'affichage des erreurs
+    let choixuser = document.getElementById("name").value.trim().toLowerCase();
+
+    let paysDevine = paysdata.find(c => c.name.common.toLowerCase() === choixuser);
+
+    if (!paysDevine) {
+        errorMessage.innerHTML = `<span class="error-text">❌ Pays introuvable !</span>`;
+        return;
+    }
+
+    errorMessage.innerHTML = ""; // Efface le message d'erreur si le pays est valide
+
+    let indicateurs = [];
+    let cdt = true;
+
+    if (paysDevine.region === choix.region) {
+        indicateurs.push(`🌍 Région : ✅ Correct ! (${choix.region})`);
+    } else {
+        cdt = false;
+        indicateurs.push(`🌍 Région : ❌ Faux (${paysDevine.region} au lieu de ${choix.region})`);
+    }
+
+    let CapitaleDevine = paysDevine.capital ? paysDevine.capital[0] : "N/A";
+    let Choixcapital = choix.capital ? choix.capital[0] : "N/A";
+    if (CapitaleDevine === Choixcapital) {
+        indicateurs.push(`🏛 Capitale : ✅ Correct ! (${Choixcapital})`);
+    } else {
+        cdt = false;
+        indicateurs.push(`🏛 Capitale : ❌ Faux (${CapitaleDevine} au lieu de ${Choixcapital})`);
+    }
+
+    let monnaiedevine = paysDevine.currencies ? Object.keys(paysDevine.currencies)[0] : "N/A";
+    let Choixmonnaie = choix.currencies ? Object.keys(choix.currencies)[0] : "N/A";
+    if (monnaiedevine === Choixmonnaie) {
+        indicateurs.push(`💰 Monnaie : ✅ Correct ! (${Choixmonnaie})`);
+    } else {
+        cdt = false;
+        indicateurs.push(`💰 Monnaie : ❌ Faux (${monnaiedevine} au lieu de ${Choixmonnaie})`);
+    }
+
+    // Affichage des essais dans la boîte à droite
+    resultD.innerHTML = `<div class="quiz-try"><strong>${choixuser}</strong><br>${indicateurs.join("<br>")}</div>` + resultD.innerHTML;
 }
