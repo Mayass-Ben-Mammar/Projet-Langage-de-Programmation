@@ -1,0 +1,266 @@
+.Pres {
+  position: relative;
+  top: 129px;
+}
+
+.Pres_T {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 90px;
+}
+
+.Pres_ST {
+  position: absolute;
+  top: 0;
+  left: 25%;
+  width: 50%;
+  height: 150%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: justify;
+  font-size: 38px;
+}
+
+.Pres_IMG {
+  width: 100%;
+  height: 946px;
+  object-fit: cover;
+  object-position: 0 10%;
+}
+
+
+.Deta {
+  position: relative;
+  top: 150px;
+}
+
+.Deta a{
+  text-decoration: none;
+  pointer-events: auto;
+  color: red;
+  font-weight: bold;
+}
+
+.Deta_T, .Deta_ST {
+  text-align: center;
+}
+
+.Deta_DL {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  color: white;
+}
+
+.Deta_Item {
+  position: relative;
+  width: 50%;
+}
+
+.Deta_Item dt {
+  text-align: center;
+  margin: 2% 5% 8% 5%;
+  font-size: 25px;
+  background-color: #2158DE;
+  color: white;
+  border-radius: 15px;
+  padding: 20px;
+  height: 250px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.Deta_Item dd {
+  margin: 0% 1% 2% 1%;
+  position: absolute;
+  top: 35%;
+  width: 98%;
+  text-align: center;
+  font-size: 90px;
+  color: white;
+}
+
+.Deta img {
+  transform: translateY(-20%);
+  width: 275px;
+}
+
+.Deta .Trop_Long {
+  top: 20%;
+}
+
+
+.QLP {
+  position: relative;
+  top: 170px;
+  background-color: #006B07;
+  color: white;
+  text-align: center;
+  padding: 10px 0px 20px 0px;
+}
+
+.QLP a {
+  text-decoration: none;
+  pointer-events: auto;
+  color: red;
+  font-weight: bold;
+}
+
+.QLP img {
+  width: 25%;
+}
+
+.QLP_2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+.QLP_2 p {
+  background-color: #46B34D;
+  color: white;
+  width: 75%;
+  height: 275px;
+  font-size: 25px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-left: 1%;
+  padding: 0% 1% 0% 1%;
+}
+
+.QLP_2 a {
+  width: 25%;
+  height: 275px;
+  margin-right: 1%;
+  text-decoration: none;
+}
+
+.QLP_2 button {
+  width: 100%;
+  height: 100%;
+  background-color: #2158DE;
+  color: white;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 70px;
+}
+
+.QLP_2 button:hover {
+  background-color: #2FA7F7;
+}
+
+
+@media screen and (max-width: 1200px) {
+    .Pres_T {
+        font-size: 60px;
+    }
+    .Pres_ST {
+        font-size: 28px;
+    }   
+    .Deta_Item dd {
+        font-size: 65px;
+    }
+    .QLP_2 {
+        flex-direction: column;
+        align-items: center;
+    }
+    .QLP_2 p, .QLP_2 a {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .Pres {
+        top: 119px;
+    }
+    .Pres_T {
+        font-size: 50px;
+    }
+    .Pres_ST {
+        font-size: 24px;
+    }
+    .Pres_IMG {
+        height: 756px;
+    }
+    .Deta_DL {
+        flex-direction: column;
+    }
+    .Deta_Item {
+        width: 100%;
+    }
+    .QLP_2 p, .QLP_2 a {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .Pres {
+        top: 78px;
+    }
+    .Pres_T {
+        font-size: 40px;
+        height: 65%;
+    }
+    .Pres_ST {
+        font-size: 20px;
+        height: 130%;
+    }
+    .Pres_IMG {
+        height: 529px;
+    }   
+    .Deta_Item dd {
+        font-size: 60px;
+    }
+    .QLP_2 p, .QLP_2 a {
+        height: auto;
+        font-size: 20px;
+    }
+    .QLP_2 button {
+        font-size: 30px;
+        padding: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .Pres_T {
+        font-size: 30px;
+        height: 50%;
+    }
+    .Pres_ST {
+        font-size: 16px;
+        height: 120%;
+    }
+    .Pres_IMG {
+        height: 378px;
+    }
+    .QLP_2 p, .QLP_2 a {
+        font-size: 16px;
+    }
+    .QLP_2 button {
+        font-size: 24px;
+    }
+}

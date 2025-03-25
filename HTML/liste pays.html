@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des pays</title>
+    <link rel="stylesheet" href="../CSS/navi.css">
+    <link rel="stylesheet" href="../CSS/liste.css">
+    <script src="../JS/liste pays.js"></script>
+    <script src="../JS/menu.js" defer></script>
+</head>
+<body>
+    <div class="Nav">
+        <h1>Logo</h1>
+
+        <div class="MenuB" onclick="Menu()">☰</div>
+        
+        <nav id="Liens">
+            <a href = "liste pays.html">Liste des pays</a>
+            <a href = "quiz.html">Quiz</a>
+            <a href = "jsp.html">Fonctionnalités</a>
+            <a href = "site.html#API">API Rest Countries</a>
+            <a href = "site.html#Presentation">Présentation</a>
+        </nav>
+    </div>
+
+    <div class="Liste">
+        <h2>Voici la liste des pays en français et en anglais :</h2>
+   
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom en Français</th>
+                    <th>Nom en Anglais</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="francais"></td>
+                    <td id="anglais"></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</body>
+<footer>
+    <p>test test &copy; copyright </p>
+</footer>
+</html>

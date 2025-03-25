@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #DCE2E5;
+}
+
+
+footer {
+  background-color: black;
+  text-align: center;
+  width: 100%;
+  color: white;
+  position: relative;
+  margin-top: 170px;
+  padding: 5px 0px 5px 0px;
+}
+
+
+#Presentation, #API, #Fonctionnalités {
+  margin-top: -150px;
+  padding-top: 150px;
+}
+
+
+.Nav {
+  background-color: #2158DE;
+  overflow: hidden;
+  display: block;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 2;
+  border-bottom: 1px solid black; 
+}
+
+.Nav a {
+  float: right;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.Nav a:hover {
+  background-color: #2FA7F7;
+}
+
+.Nav h1 {
+  text-align: left;
+  padding: 0px 15px;
+  color: #FFFFFF;
+}
+
+.MenuB {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    color: white;
+    z-index: 100;
+}
+
+@media screen and (max-width: 992px) {
+    .Nav a {
+        font-size: 14px;
+        padding: 10px 12px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .Nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .Nav a {
+        float: none;
+        display: block;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .MenuB {
+        display: block;
+    }
+
+    #Liens {
+        position: fixed;
+        top: 0px;
+        right: -250px;
+        width: 250px;
+        height: 100vh;
+        background-color: #2158DE;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: right 0.3s ease-in-out;
+    }
+
+    #Liens.open {
+        right: 0;
+    }
+
+    #Liens a {
+        color: white;
+        font-size: 20px;
+        padding: 15px 0px;
+        text-decoration: none;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    #Liens a:hover {
+        background-color: #2FA7F7;
+    }
+}
