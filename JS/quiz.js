@@ -29,84 +29,7 @@ function Commencer(){
         console.error("raaaaaaaaaaah");
     }
 }
-/*
-function Devine() {
-	let resultD = document.getElementById("result"); // Partie du DOM ou le texte de resultat va etre affiché
-	cdt = true; // Condition de partie perdu ou gagné
-    let choixuser = document.getElementById("name").value.trim().toLowerCase(); // Choix de l'utilisateur sans majuscule et sans espace (trim) en fin et début de chaine
 
-
-    // Trouver le pays saisi par l'utilisateur dans l'api
-    let paysDevine = paysdata.find(c => c.name.common.toLowerCase() === choixuser);
-
-    if (!paysDevine) {
-        resultD.innerHTML = "<br>" + `<strong>❌ Pays introuvable !</strong>` +  "<br>" + resultD.innerHTML + "<br>";
-        return;
-    }
-
-    // Comparaison avec le pays mystère
-    let indicateurs = []; // Va contenir si les indices du pays mysteres sont validés
-
-    // 🌍 Région
-    if (paysDevine.region === choix.region) {
-        indicateurs.push(`🌍 Région : ✅ Correct ! (${choix.region})`);
-    } else {
-		cdt = false;
-        indicateurs.push(`🌍 Région : ❌ Faux (${paysDevine.region} au lieu de ${choix.region})`); 
-    }
-
-    // 🏛 Capitale
-    let CapitaleDevine = paysDevine.capital ? paysDevine.capital[0] : "N/A"; // Si paysDevine.capital[0] pas disponible on met "N/A"
-    let Choixcapital = choix.capital ? choix.capital[0] : "N/A"; // Si choix.capital[0] pas disponible on met "N/A"
-    if (CapitaleDevine === Choixcapital) {
-        indicateurs.push(`🏛 Capitale : ✅ Correct ! (${Choixcapital})`);
-    } else {
-		cdt = false;
-		if (vie <= 2) { // Capitale données au dernier essai (décalage de 1 car la vie est retiré après l'affichage)
-			indicateurs.push(`🏛 Capitale : ❌ Faux (${CapitaleDevine} au lieu de ${Choixcapital})`);}
-		else {
-			indicateurs.push("🏛 Capitale : ❌ Faux (Aide à 1 vie...)");
-		}
-    }
-
-    // 💰 Monnaie
-    let monnaiedevine = paysDevine.currencies ? Object.keys(paysDevine.currencies)[0] : "N/A";
-    let Choixmonnaie = choix.currencies ? Object.keys(choix.currencies)[0] : "N/A";
-    if (monnaiedevine === Choixmonnaie) {
-        indicateurs.push(`💰 Monnaie : ✅ Correct ! (${Choixmonnaie})`);
-    } else {
-		cdt = false;
-		if (vie <= 4) { // Monnaie donnée quand il reste 3 vies (décalage de 1 car la vie est retiré après l'affichage)
-			indicateurs.push(`💰 Monnaie : ❌ Faux (${monnaiedevine} au lieu de ${Choixmonnaie})`);
-    }
-		else {
-			indicateurs.push("💰 Monnaie : ❌ Faux (Aide à 3 vies ou moins...)");
-	}
-	}
-
-    // 👥 Population (plus ou moins élevé)
-    if (paysDevine.population === choix.population) {
-        indicateurs.push(`👥 Population : ✅ Exact ! (${choix.population})`);
-    } else if (paysDevine.population > choix.population) {
-		cdt = false;
-        indicateurs.push("👥 Population : ❌ Trop élevée !");
-    } else {
-		cdt = false;
-        indicateurs.push("👥 Population : ❌ Trop basse !");
-    }
-
-    // Affichage du résultat selon cdt 
-	if (cdt == true ) {resultD.innerHTML = "<br>" + resultD.innerHTML + "<strong>Tu as gagné!</strong> Le pays était: " + `<strong>${choixuser}</strong>` + "<br><br>" + indicateurs.join("<br>") + "<br><br>";
-	document.getElementById("Entree").innerHTML = ""; vie = 6; return;} // On affiche le message et les indices validés (tous dans ce cas) et reinitialise les vies pour rejouer
-	vie--; // Si on a pas gagné on retire 1 vie
-    resultD.innerHTML = "<br>" + `<strong>${choixuser}</strong>` +  "<br><br>" + vie + " <strong>vies restantes</strong> " + "<br><br>" + indicateurs.join("<br>") + "<br>"  + resultD.innerHTML + "<br>";
-	if (vie == 0) {vie = 6; resultD.innerHTML = `Tu as perdu... Le pays était ${choix.name.common}` + "<br>" + ` Capitale: ${Choixcapital}` + "<br>" + `Monnaie: ${Choixmonnaie}` + "<br>" + `Population ${choix.population}`;
-	document.getElementById("Entree").innerHTML = "";return;} // On appuie sur "commencer" pour rejouer donc on supprime les pays dévinés a la partie d'avant
-	// On affiche la bonne réponse, les indices et reinitialise les vies pour rejouer
-return;
-}
-
-*/
 function Devine() {
     let resultD = document.getElementById("result"); 
     let errorMessage = document.getElementById("Erreur"); // Zone d'affichage des erreurs
@@ -137,8 +60,11 @@ function Devine() {
         indicateurs.push(`🏛 Capitale : ✅ Correct ! (${Choixcapital})`);
     } else {
         cdt = false;
-        indicateurs.push(`🏛 Capitale : ❌ Faux (${CapitaleDevine} au lieu de ${Choixcapital})`);
-    }
+		if (vie <= 2) { // Capitale données au dernier essai (décalage de 1 car la vie est retiré après l'affichage)
+			indicateurs.push(`🏛 Capitale : ❌ Faux (${CapitaleDevine} au lieu de ${Choixcapital})`);}
+		else {
+			indicateurs.push("🏛 Capitale : ❌ Faux (Aide à 1 vie...)");
+    }}
 
     let monnaiedevine = paysDevine.currencies ? Object.keys(paysDevine.currencies)[0] : "N/A";
     let Choixmonnaie = choix.currencies ? Object.keys(choix.currencies)[0] : "N/A";
@@ -146,9 +72,28 @@ function Devine() {
         indicateurs.push(`💰 Monnaie : ✅ Correct ! (${Choixmonnaie})`);
     } else {
         cdt = false;
-        indicateurs.push(`💰 Monnaie : ❌ Faux (${monnaiedevine} au lieu de ${Choixmonnaie})`);
+		if (vie <= 4) { // Monnaie donnée quand il reste 3 vies (décalage de 1 car la vie est retiré après l'affichage)
+			indicateurs.push(`💰 Monnaie : ❌ Faux (${monnaiedevine} au lieu de ${Choixmonnaie})`);
+    }
+		else {
+			indicateurs.push("💰 Monnaie : ❌ Faux (Aide à 3 vies ou moins...)");}	
+    }
+	if (paysDevine.population === choix.population) {
+        indicateurs.push(`👥 Population : ✅ Exact ! (${choix.population})`);
+    } else if (paysDevine.population > choix.population) {
+		cdt = false;
+        indicateurs.push("👥 Population : ❌ Trop élevée !");
+    } else {
+		cdt = false;
+        indicateurs.push("👥 Population : ❌ Trop basse !");
     }
 
     // Affichage des essais dans la boîte à droite
-    resultD.innerHTML = `<div class="quiz-try"><strong>${choixuser}</strong><br>${indicateurs.join("<br>")}</div>` + resultD.innerHTML;
+	if (cdt == true) {resultD.innerHTML = `<div class="quiz-try"><br> <strong>Tu as gagné!</strong> Le pays était: <strong>${choixuser}</strong> <br><br>${indicateurs.join("<br>")}<br><br></div>` + resultD.innerHTML;
+	document.getElementById("Entree").innerHTML = ""; vie = 6; return;}
+	else {
+	vie--;
+    resultD.innerHTML = `<div class="quiz-try"><strong>${choixuser}</strong><br><br>${vie} vies restantes <br><br>${indicateurs.join("<br>")}</div>` + resultD.innerHTML;
+	if (vie == 0) {vie = 6; resultD.innerHTML = `<div class="quiz-try">Tu as perdu... Le pays était ${choix.name.common} <br> Capitale: ${Choixcapital} <br> Monnaie: ${Choixmonnaie} <br> Population ${choix.population} <br><br>${indicateurs.join("<br>")}<br><br></div>` + resultD.innerHTML;
+	document.getElementById("Entree").innerHTML = ""; return;}}
 }
