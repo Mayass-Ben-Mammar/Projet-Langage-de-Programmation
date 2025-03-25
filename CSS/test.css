@@ -1,6 +1,6 @@
 .INFO {
     position: relative;
-    top: 129px;
+    top: 150px;
     text-align: center;
     min-height: 50%;
 }
@@ -70,10 +70,10 @@
 }
 
 #result img {
-    max-width: 100%;
-    height: auto;
-    max-height: 200px;
+    height: 300px;
+    width: auto;
     border-radius: 10px;
+    border-color: black;
     margin-top: 15px;
 }
 
