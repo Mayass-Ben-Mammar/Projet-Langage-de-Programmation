@@ -1,41 +1,58 @@
-fetch("https://restcountries.com/v3.1/all")
-    .then(response => {
-        if (!response.ok) {
-            throw new Error("Pays introuvable");
-        }
-        return response.json();
-    })
-    .then(data => {
-        let paysListe = [];
+// Verification
+let cachedata = localStorage.getItem("allCountriesData");
 
-        for (let val of data) {
-            let nomAnglais = val.name.common;
-            let nomFrancais = val.translations?.fra?.common || "Non disponible";
-            paysListe.push({ anglais: nomAnglais, francais: nomFrancais });
-        }
+if (cachedata) {
+    // Si les donnees sont dans le localStorage, on va les utiliser
+    afficherPaysListe(JSON.parse(cachedata));
+} else {
+    fetch("https://restcountries.com/v3.1/all")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Pays introuvable");
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Stocker la reponse dans le localStorage
+            localStorage.setItem("allCountriesData", JSON.stringify(data));
 
-        // Trier par nom français
-        paysListe.sort((a, b) => a.francais.localeCompare(b.francais));
+            // Recuperer les donnees et trier
+            let paysListe = [];
 
-        // Sélection des deux colonnes
-        let colonneFrancais = document.getElementById("francais");
-        let colonneAnglais = document.getElementById("anglais");
+            for (let val of data) {
+                let nomAnglais = val.name.common;
+                let nomFrancais = val.translations?.fra?.common || "Non disponible";
+                paysListe.push({ anglais: nomAnglais, francais: nomFrancais });
+            }
 
-        // Réinitialiser les colonnes avant d'ajouter du contenu
-        colonneFrancais.innerHTML = "";
-        colonneAnglais.innerHTML = "";
+            // Trier par nom français
+            paysListe.sort((a, b) => a.francais.localeCompare(b.francais));
 
-        // Remplir les colonnes
-        let listeFrancais = "";
-        let listeAnglais = "";
+            // Afficher les pays
+            afficherPaysListe(paysListe);
+        })
+        .catch(error => console.error("Erreur lors du chargement des pays :", error));
+}
 
-        for (let pays of paysListe) {
-            listeFrancais += `<p>${pays.francais}</p>`; // Ajoute chaque pays en français
-            listeAnglais += `<p>${pays.anglais}</p>`;   // Ajoute chaque pays en anglais
-        }
+// Fonction pour afficher la liste des pays dans les colonnes
+function afficherPaysListe(paysListe) {
+    let colonneFrancais = document.getElementById("francais");
+    let colonneAnglais = document.getElementById("anglais");
 
-        // Injecter le contenu dans chaque colonne
-        colonneFrancais.innerHTML = listeFrancais;
-        colonneAnglais.innerHTML = listeAnglais;
-    })
-    .catch(error => console.error("Erreur lors du chargement des pays :", error));
+    // Reinitialiser les colonnes avant d'ajouter du contenu
+    colonneFrancais.innerHTML = "";
+    colonneAnglais.innerHTML = "";
+
+    // Remplir les colonnes
+    let listeFrancais = "";
+    let listeAnglais = "";
+
+    for (let pays of paysListe) {
+        listeFrancais += `<p>${pays.francais}</p>`; 
+        listeAnglais += `<p>${pays.anglais}</p>`;  
+    }
+
+    // Injecter le contenu dans chaque colonne
+    colonneFrancais.innerHTML = listeFrancais;
+    colonneAnglais.innerHTML = listeAnglais;
+}
