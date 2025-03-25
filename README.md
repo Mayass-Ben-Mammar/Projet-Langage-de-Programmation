@@ -1,5 +1,6 @@
 # Projet-Langage-de-Programmation
 
-A faire :
-github page (Mayass)
-diagramme (voc discord)
+A faire : <br>
+github page <br>
+gantt <br>
+2-3 reglage <br>
