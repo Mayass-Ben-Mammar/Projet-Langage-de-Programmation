@@ -3,4 +3,4 @@
 A faire : <br>
 github page <br>
 gantt <br>
-2-3 reglage (bibliotheque java : Anime.js et/ou weetAlert2)<br>
+2-3 reglage (bibliotheque java : Anime.js et/ou SweetAlert2)<br>
