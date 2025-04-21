@@ -55,7 +55,7 @@
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    margin: 10% 25%;
+    margin: 5% 25%;
 }
 
 #result h2 {
@@ -74,7 +74,7 @@
     width: auto;
     border-radius: 10px;
     border-color: black;
-    margin-top: 15px;
+    margin: 15px;
 }
 
 @media screen and (max-width: 768px) {
