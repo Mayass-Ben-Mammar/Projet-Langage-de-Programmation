@@ -1,51 +1,107 @@
-fetch("https://restcountries.com/v3.1/all")
-    .then(response => {
-        if (!response.ok) {
-            throw new Error("Pays introuvable");
+function obtenirTousLesPays() {
+    const cache = localStorage.getItem("paysData");
+    const expiration = localStorage.getItem("paysData_exp");
+
+    const maintenant = new Date().getTime();
+    const expireDans = 1000 * 60 * 60 * 24; // 24 heures
+
+    if (cache && expiration && maintenant < parseInt(expiration)) {
+        try {
+            return Promise.resolve(JSON.parse(cache));
+        } catch (e) {
+            localStorage.removeItem("paysData");
+            localStorage.removeItem("paysData_exp");
         }
-        return response.json();
-    })
-    .then(data => {
-        let paysListe = [];
+    }
 
-        for (let val of data) {
-            let nomAnglais = val.name.common;
-            let nomFrancais = val.translations?.fra?.common || "Non disponible";
-            paysListe.push({ anglais: nomAnglais, francais: nomFrancais });
-        }
+    return fetch("https://restcountries.com/v3.1/all")
+        .then(response => {
+            if (!response.ok) throw new Error("Erreur lors du chargement des pays");
+            return response.json();
+        })
+        .then(data => {
+            localStorage.setItem("paysData", JSON.stringify(data));
+            localStorage.setItem("paysData_exp", (nouveauTimestamp()).toString());
+            return data;
+        });
+}
 
-        // Trier par nom français
-        paysListe.sort((a, b) => a.francais.localeCompare(b.francais));
+function nouveauTimestamp() {
+    return new Date().getTime() + 1000 * 60 * 60 * 24; // 24 heures
+}
 
-        // Sélection des deux colonnes
-        let colonneFrancais = document.getElementById("francais");
-        let colonneAnglais = document.getElementById("anglais");
+function afficherPays(paysListe) {
+    // Sélection des colonnes
+    const colonneFrancais = document.getElementById("francais");
+    const colonneAnglais = document.getElementById("anglais");
+    
+    // Remplir les colonnes
+    for (let pays of paysListe) {
+        colonneFrancais.innerHTML += `<p>${pays.francais}</p>`;
+        colonneAnglais.innerHTML += `<p>${pays.anglais}</p>`;
+    }
+}
 
-        // Réinitialiser les colonnes avant d'ajouter du contenu
-        colonneFrancais.innerHTML = "";
-        colonneAnglais.innerHTML = "";
+function chargerPays() {
+    obtenirTousLesPays()
+        .then(data => {
+            let paysListe = [];
 
-        // Remplir les colonnes
-        let listeFrancais = "";
-        let listeAnglais = "";
+            for (let val of data) {
+                let nomAnglais = val.name.common;
+                let nomFrancais = val.translations?.fra?.common || "Non disponible";
+                paysListe.push({ anglais: nomAnglais, francais: nomFrancais });
+            }
 
-        for (let pays of paysListe) {
-            listeFrancais += `<p>${pays.francais}</p>`; // Ajoute chaque pays en français
-            listeAnglais += `<p>${pays.anglais}</p>`;   // Ajoute chaque pays en anglais
-        }
+            paysListe.sort((a, b) => a.francais.localeCompare(b.francais));
 
-        // Injecter le contenu dans chaque colonne
-        colonneFrancais.innerHTML = listeFrancais;
-        colonneAnglais.innerHTML = listeAnglais;
-    })
-    .catch(error => console.error("Erreur lors du chargement des pays :", error));
+            localStorage.setItem("paysListe", JSON.stringify(paysListe)); // optionnel
+            afficherPays(paysListe);
+        })
+        .catch(error => {
+            console.error("Erreur :", error);
+        });
+}
 
+// Lancer la fonction au chargement de la page
+window.addEventListener("load", chargerPays);
 
-anime({
-  targets: '#paysaffichage p',
-  opacity: [0, 1],
-  translateX: [-20, 0],
-  delay: anime.stagger(50),
-  duration: 600,
-  easing: 'easeOutQuad'
+//message pas de co avec sweet alert
+
+document.addEventListener("DOMContentLoaded", () => {
+    const clearBtn = document.getElementById("clearCacheBtn");
+
+    if (clearBtn) {
+            clearBtn.addEventListener("click", () => {
+            // Vider tout le localStorage
+            localStorage.clear();
+
+            // Afficher confirmation
+            Swal.fire({
+                icon: 'success',
+                title: 'Cache vidé',
+                text: 'Le cache local a bien été supprimé.',
+                confirmButtonText: 'OK'
+            });
+        });
+    }
 });
+
+
+if (!navigator.onLine) {
+  Swal.fire({
+    icon: 'error',
+    title: 'Pas de connexion Internet',
+    text: 'Vous êtes actuellement hors ligne. Vérifiez votre connexion.',
+    confirmButtonText: 'Réessayer'
+  });
+}
+
+if (!localStorage.getItem('paysData')) {
+  Swal.fire({
+    icon: 'warning',
+    title: 'Aucune donnée disponible',
+    text: 'Aucune donnée n’a été trouvée dans le cache.',
+    confirmButtonText: 'OK'
+  });
+}

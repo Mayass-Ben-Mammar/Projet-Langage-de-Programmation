@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="../CSS/navi.css">
     <link rel="stylesheet" href="../CSS/liste.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script src="../JS/liste pays.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../JS/liste pays.js" defer></script>
     <script src="../JS/menu.js" defer></script>
 </head>
 <body>
@@ -17,6 +18,7 @@
         <div class="MenuB" onclick="Menu()">☰</div>
         
         <nav id="Liens">
+			<a href = "info.html">Informations</a>
             <a href = "liste pays.html">Liste des pays</a>
             <a href = "quiz.html">Quiz</a>
             <a href = "jsp.html">Fonctionnalités</a>
@@ -24,8 +26,10 @@
             <a href = "site.html#Presentation">Présentation</a>
         </nav>
     </div>
-
     <div class="Liste">
+    
+    <button id="clearCacheBtn">🗑️ Vider le cache</button>
+
         <h2>Voici la liste des pays en français et en anglais :</h2>   
         <table>
             <thead>
@@ -42,7 +46,6 @@
             </tbody>
         </table>
     </div>
-    
     <footer>
         <p>test test &copy; copyright </p>
     </footer>

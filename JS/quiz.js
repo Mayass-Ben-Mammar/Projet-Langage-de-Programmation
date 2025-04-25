@@ -1,33 +1,57 @@
+function obtenirTousLesPays() {
+    const cache = localStorage.getItem("paysData");
+    const expiration = localStorage.getItem("paysData_exp");
+
+    const maintenant = new Date().getTime();
+    const expireDans = 1000 * 60 * 60 * 24; // 24 heures
+
+    if (cache && expiration && maintenant < parseInt(expiration)) {
+        try {
+            return Promise.resolve(JSON.parse(cache));
+        } catch (e) {
+            localStorage.removeItem("paysData");
+            localStorage.removeItem("paysData_exp");
+        }
+    }
+
+    return fetch("https://restcountries.com/v3.1/all")
+        .then(response => {
+            if (!response.ok) throw new Error("Erreur lors du chargement des pays");
+            return response.json();
+        })
+        .then(data => {
+            localStorage.setItem("paysData", JSON.stringify(data));
+            localStorage.setItem("paysData_exp", (nouveauTimestamp()).toString());
+            return data;
+        });
+}
+
+function nouveauTimestamp() {
+    return new Date().getTime() + 1000 * 60 * 60 * 24; // 24 heures
+}
+
 let paysdata = [];
 let choix = null;
 let vie = 6;
 
 function Commencer(){
-	// Charger tous les pays et choisir un pays mystère
-	fetch("https://restcountries.com/v3.1/all")
-		.then(response => {
-			if (!response.ok) {
-                throw new Error("Pays introuvable");} // Cas erreur
-            
-		return response.json();
-        })
-		.then(data => {
-			paysdata = data; // On stocke les infos des pays
-			choix = paysdata[Math.floor(Math.random() * paysdata.length)]; // Pays au hasard à chaque partie, entre 0 et la longueur, floor retire la partie decimale
-			console.log("Pays mystère :", choix.name.common); // Debug
-		});
-	document.getElementById("result").innerHTML = ""  // Réinitialise l'affichage a chaque partie
-    document.getElementById("Entree").innerHTML = `
-        <h2><label for="name">Entrer un pays :</label></h2>
-        <input type="text" id="name" name="name" size="30"/>
-        <button onclick="Devine()">Valider</button>
-    `; // Html inserer pour faire apparaitre la zone de texte quand on commence une partie
-    const feur = document.querySelector(".blanc");
-    if (feur) {
-        feur.style.backgroundColor = "white";
-    } else {
-        console.error("raaaaaaaaaaah");
-    }
+	obtenirTousLesPays().then(data => {
+		paysdata = data;
+		choix = paysdata[Math.floor(Math.random() * paysdata.length)];
+		console.log("Pays mystère :", choix.name.common);
+	});
+	document.getElementById("result").innerHTML = "";
+	document.getElementById("Entree").innerHTML = `
+		<h2><label for="name">Entrer un pays :</label></h2>
+		<input type="text" id="name" name="name" size="30"/>
+		<button onclick="Devine()">Valider</button>
+	`;
+	const feur = document.querySelector(".blanc");
+	if (feur) {
+		feur.style.backgroundColor = "white";
+	} else {
+		console.error("raaaaaaaaaaah");
+	}
 }
 
 function Devine() {

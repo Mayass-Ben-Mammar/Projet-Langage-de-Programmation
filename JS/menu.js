@@ -23,6 +23,3 @@ document.querySelector(".MenuB").addEventListener("click", () => {
 
   menu.classList.toggle("open");
 });
-
-
-

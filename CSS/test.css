@@ -24,26 +24,33 @@
     color: #2158DE;
 }
 
-.info-search input {
+.INFO input {
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
     width: 250px;
     margin-right: 10px;
+    margin-bottom: 100px;
 }
 
-.info-search button {
-    padding: 10px 15px;
-    font-size: 16px;
-    background-color: #2158DE;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.INFO button {
+  width: 25%;
+  height: 100%;
+  background-color: #2158DE;
+  color: white;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 70px;
+  margin-left: 37.5%;
 }
 
-.info-search button:hover {
+.INFO button:hover {
     background-color: #2FA7F7;
 }
 
@@ -55,7 +62,7 @@
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    margin: 5% 25%;
+    margin: 5% 25% 26% 25%;
 }
 
 #result h2 {
@@ -74,7 +81,7 @@
     width: auto;
     border-radius: 10px;
     border-color: black;
-    margin: 15px;
+    margin-top: 15px;
 }
 
 @media screen and (max-width: 768px) {

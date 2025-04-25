@@ -31,6 +31,22 @@
   background-color: #f2f2f2;
 }
 
+#clearCacheBtn {
+  background-color: #e63946;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 10px;
+  font-size: 16px;
+}
+
+#clearCacheBtn:hover {
+  background-color: #d62828;
+}
+
+
 @media screen and (max-width: 768px) {
     .Liste table {
         width: 50%;

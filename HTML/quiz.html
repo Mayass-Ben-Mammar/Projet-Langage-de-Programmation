@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../CSS/navi.css">
     <link rel="stylesheet" href="../CSS/quiz.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../JS/quiz.js" defer></script>
     <script src="../JS/menu.js" defer></script>
 </head>
@@ -17,6 +18,7 @@
         <div class="MenuB" onclick="Menu()">☰</div>
         
         <nav id="Liens">
+			<a href = "info.html">Informations</a>
             <a href = "liste pays.html">Liste des pays</a>
             <a href = "quiz.html">Quiz</a>
             <a href = "jsp.html">Fonctionnalités</a>
@@ -39,11 +41,13 @@
             <li><strong>Progressez :</strong> Défiez vos amis et améliorez votre score à chaque essai !</li>
             <li><strong>Répondez aux questions :</strong> Choisissez la bonne réponse parmi plusieurs options.</li>
         </ul>
-
         <h2>Prêt à relever le défi ?</h2>
         <p>Appuyez sur le bouton ci-dessous pour commencer le quiz et voir jusqu’où vous pouvez aller !</p>
     	<h2> <strong>Remaque</strong>: Une liste de tout les pays ainsi que leur traduction sont disponibles <a href="sliste pays.html">ici</a></h2>
         <button onclick="Commencer()">Commencer le Quiz</button>
+        <br>
+        <button id="clearCacheBtn">🗑️ Vider le cache</button>
+
         <div class="Qui_A">
             <div class="Qui_B">
         	   <div id="Entree"></div>
@@ -53,7 +57,6 @@
             <div id="result" class="blanc"></div>
         </div>
     </div>
-
     <footer>
         <p>test test &copy; copyright </p>
     </footer>
