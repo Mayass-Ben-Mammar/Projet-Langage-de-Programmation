@@ -49,10 +49,9 @@ footer {
   background-color: #2FA7F7;
 }
 
-.Nav h1 {
-  text-align: left;
-  padding: 0px 15px;
-  color: #FFFFFF;
+.Nav img {
+  padding: 15px 0px 0px 15px;
+  width: 75px;
 }
 
 .MenuB {

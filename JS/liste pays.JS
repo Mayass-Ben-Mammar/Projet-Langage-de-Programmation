@@ -87,6 +87,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+function deletecache() {
+    localStorage.removeItem("paysData");
+    localStorage.removeItem("paysData_exp");
+}
 
 if (!navigator.onLine) {
   Swal.fire({

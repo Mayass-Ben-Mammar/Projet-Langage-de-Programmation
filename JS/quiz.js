@@ -122,6 +122,11 @@ function Devine() {
 	document.getElementById("Entree").innerHTML = ""; return;}}
 }
 
+function deletecache() {
+	localStorage.removeItem("paysData");
+	localStorage.removeItem("paysData_exp");
+}
+
 const btn = document.querySelector(".Qui button");
 
 btn.addEventListener("mouseenter", () => {
