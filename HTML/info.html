@@ -6,15 +6,15 @@
     <title>Info</title>
     <link rel="stylesheet" href="../CSS/navi.css">
     <link rel="stylesheet" href="../CSS/test.css">
-    <link rel="stylesheet" href="../CSS/style.css">
-    <script src="../JS/menu.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="../JS/info.js" defer></script>
+    <script src="../JS/menu.js" defer></script>
 </head>
 <body>
     <div class="Nav">
         <img src="../IMG/Logo.png">
 
-        <div class="MenuB" onclick="Menu()">☰</div>
+        <div class="MenuB">☰</div>
         
         <nav id="Liens">
 			<a href = "info.html">Informations</a>
@@ -33,7 +33,7 @@
         <input type="text" id="name" name="name" size="30"/>
         <button onclick="getCountry()">Valider</button>
 
-        <p id="result"></p> <!-- Zone où afficher le résultat -->
+        <p id="result" class="blanc"></p> <!-- Zone où afficher le résultat -->
     </div>  
     <footer>
         <p>test test &copy; copyright </p>

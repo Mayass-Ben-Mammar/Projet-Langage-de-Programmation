@@ -121,4 +121,9 @@ footer {
     #Liens a:hover {
         background-color: #2FA7F7;
     }
+
+    .Nav img {
+        padding: 10px 0px;
+        width: 75px;
+    }
 }

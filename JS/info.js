@@ -1,5 +1,12 @@
 function getCountry() {
-let country = document.getElementById("name").value; // On prend le texte écrit 
+let country = document.getElementById("name").value; // On prend le texte écrit
+
+const feur = document.querySelector(".blanc");
+if (feur) {
+    feur.style.backgroundColor = "white";
+} else {
+    console.error("raaaaaaaaaaah");
+}
 
 fetch(`https://restcountries.com/v3.1/name/${country}?fullText=true`) // Appel de l'api fetch pour prendre les infos du DOM
         .then(response => { // On utilise .then avec les Promise
@@ -43,3 +50,23 @@ fetch(`https://restcountries.com/v3.1/name/${country}?fullText=true`) // Appel d
             console.error("Erreur :", error); // texte en rouge si c'est raté
         });
 }
+
+const btn = document.querySelector(".INFO button");
+
+btn.addEventListener("mouseenter", () => {
+  anime({
+    targets: btn,
+    scale: 1.1,
+    duration: 300,
+    easing: 'easeInOutQuad'
+  });
+});
+
+btn.addEventListener("mouseleave", () => {
+  anime({
+    targets: btn,
+    scale: 1,
+    duration: 300,
+    easing: 'easeInOutQuad'
+  });
+});
